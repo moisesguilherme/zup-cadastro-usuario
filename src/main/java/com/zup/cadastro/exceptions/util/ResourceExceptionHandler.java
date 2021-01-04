@@ -1,6 +1,7 @@
 package com.zup.cadastro.exceptions.util;
 
 import com.zup.cadastro.exceptions.UsuarioWithSameCpfAlreadyExistException;
+import com.zup.cadastro.exceptions.UsuarioWithSameEmailAlreadyExistException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,4 +23,14 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
+    @ExceptionHandler(UsuarioWithSameEmailAlreadyExistException.class)
+    public ResponseEntity<ErrorDetails> handlerCategoriaException(UsuarioWithSameEmailAlreadyExistException e, HttpServletRequest request) {
+        e.printStackTrace();
+        ErrorDetails error = new ErrorDetails();
+        error.setStatus(500l);
+        error.setTitle("Já existe usuário comm esse Email.");
+        error.setUrl("http://erros.teste.com/500");
+        error.setTimestamp(System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+    }
 }

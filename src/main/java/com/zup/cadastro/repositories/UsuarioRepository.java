@@ -12,5 +12,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     public Usuario findByCpf(String cpf);
 
     @Query("select usuario from Usuario usuario where usuario.email = ?1")
-    public Usuario findEmail(String email);
+    public Usuario findByEmail(String email);
 }

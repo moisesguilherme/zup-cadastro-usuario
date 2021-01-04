@@ -16,7 +16,7 @@ public class Usuario {
 
     private String nome;
 
-    private String Email;
+    private String email;
 
     private String cpf;
 
@@ -39,11 +39,11 @@ public class Usuario {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getCPF() {
@@ -67,12 +67,12 @@ public class Usuario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(Email, usuario.Email) && Objects.equals(cpf, usuario.cpf) && Objects.equals(dataNacimento, usuario.dataNacimento);
+        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(email, usuario.email) && Objects.equals(cpf, usuario.cpf) && Objects.equals(dataNacimento, usuario.dataNacimento);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, Email, cpf, dataNacimento);
+        return Objects.hash(id, nome, email, cpf, dataNacimento);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Usuario {
         return "Usuario{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", Email='" + Email + '\'' +
+                ", Email='" + email + '\'' +
                 ", CPF='" + cpf + '\'' +
                 ", dataNacimento=" + dataNacimento +
                 '}';
