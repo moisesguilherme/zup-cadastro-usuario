@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.zup.cadastro.dto.UserDTO;
+import com.zup.cadastro.dto.UserInsertDTO;
+import com.zup.cadastro.dto.UserUpdateDTO;
 import com.zup.cadastro.services.UserService;
 
 @RestController
@@ -40,17 +42,17 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<UserDTO> insert(@RequestBody @Valid UserDTO dto) {
-		dto = service.insert(dto);
+	public ResponseEntity<UserDTO> insert(@RequestBody @Valid UserInsertDTO dto) {
+		UserDTO newDto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(dto.getId()).toUri();
-		return ResponseEntity.created(uri).body(dto);
+		return ResponseEntity.created(uri).body(newDto);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserDTO dto){
-		dto = service.update(id, dto);
-		return ResponseEntity.ok().body(dto);
+	public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO dto){
+		UserDTO newDto = service.update(id, dto);
+		return ResponseEntity.ok().body(newDto);
 	}
 	
 	@DeleteMapping(value = "/{id}")

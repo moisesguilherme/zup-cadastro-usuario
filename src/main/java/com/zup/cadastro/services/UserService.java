@@ -1,6 +1,5 @@
 package com.zup.cadastro.services;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,11 +9,11 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zup.cadastro.dto.UserDTO;
+import com.zup.cadastro.dto.UserInsertDTO;
 import com.zup.cadastro.entities.User;
 import com.zup.cadastro.repositories.UserRepository;
 import com.zup.cadastro.services.exceptions.DatabaseException;
@@ -38,11 +37,10 @@ public class UserService {
 		return list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
 	}
 
-	public UserDTO insert(UserDTO dto) {
+	//Recebe o UserInsertDTO para funcionar a validação.
+	public UserDTO insert(UserInsertDTO dto) {
 		User entity = new User();
-		entity.setName(dto.getName());
-		entity.setCpf(dto.getCpf());
-		entity.setBirthDate(dto.getBirthDate());
+		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new UserDTO(entity);
 	}
