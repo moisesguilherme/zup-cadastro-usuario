@@ -39,12 +39,12 @@ public class UserInsertValidator implements ConstraintValidator<UserInsertValid,
 		}
 		
 		// CPF válido
-		/*Pattern cpfPattern = Pattern.compile("[A-F]{5,}.*");
-		Matcher match = cpfPattern.matcher(user.getCpf());
+		Pattern cpfPattern = Pattern.compile("([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})");
+		Matcher match = cpfPattern.matcher(dto.getCpf());
 		Boolean isMatch = match.matches();
-		if (isMatch) {
-			list.add(new FieldMessage("CPF", "O CPF é um formato inválido"));
-		}*/
+		if (!isMatch) {
+			list.add(new FieldMessage("cpf", "O CPF é um formato inválido"));
+		}
 		
 		
 		for (FieldMessage e : list) {
