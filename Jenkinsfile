@@ -1,22 +1,11 @@
-pipeline {
-    agent any
-    stages {
-        stage("verify tooling"){
-            steps {
-                echo 'teste'
-                sh '''
-                   ./mvnw clean package
-                  '''
-            }
-        }
-
-       stage('SonarQube Analysis') {
-            script {
-                def scannerHome = tool 'SonarScanner';
-             }
-            withSonarQubeEnv() {
-                sh "${scannerHome}/bin/sonar-scanner"
-            }
-        }
+node {
+  stage('SCM') {
+    git 'https://github.com/moisesguilherme/zup-cadastro-usuario.git'
+  }
+  stage('SonarQube analysis') {
+    def scannerHome = tool 'SonarScanner 4.0';
+    withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
+      sh "${scannerHome}/bin/sonar-scanner"
     }
+  }
 }
