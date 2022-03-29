@@ -17,9 +17,11 @@ public class UserDTO implements Serializable{
 	@NotBlank(message = "Nome é um campo obrigatório")
 	private String name;
 
+	@NotBlank(message = "Email é um campo obrigatório")
 	private String email;
 
-    private String cpf;
+	@NotBlank(message = "CPF é um campo obrigatório")
+	private String cpf;
 
     @Past(message = "A data de nascimento deve ser uma data passada")
     private Date birthDate;

@@ -1,22 +1,19 @@
 package com.zup.cadastro.controllers.exceptions;
 
+import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
 
-public class StandardError {
-
-	private Instant timestamp;
-	private Integer status;
-	private String error;
-	private String message;
-	private String path;
+public class StandardError implements Serializable{
+	private static final long serialVersionUID = 1L; 
 	
-	private Map<String, String> errors = new HashMap<>(); 
-	
-	public StandardError() {
-		
-	}
+	 private Instant timestamp;
+	 private Integer status;
+	 private String error;
+	 private String message;
+	 private String path;
+	 
+	 public StandardError() {
+	 }
 
 	public Instant getTimestamp() {
 		return timestamp;
@@ -58,9 +55,6 @@ public class StandardError {
 		this.path = path;
 	}
 
-	public Map<String, String> getErrors() {
-		return errors;
-	}
-	
-	
+	 
+	 
 }
